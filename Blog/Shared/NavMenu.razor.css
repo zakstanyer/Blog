@@ -1,0 +1,14 @@
+.navButton {
+    border: none;
+    background-color: rgba(128, 128, 128, 0);
+    color: rgb(170, 13, 233);
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    right: 700px;
+    position: relative;
+    cursor: pointer;
+    
+  }

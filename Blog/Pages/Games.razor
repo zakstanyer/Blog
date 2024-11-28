@@ -1,0 +1,45 @@
+﻿@page "/games"
+
+@using DataLibrary
+@using Blog.Models
+@using Microsoft.Extensions.Configuration
+@inject IDataAccess1 _data
+@inject IConfiguration _config
+
+<h3>Games</h3>
+
+@if (games == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <table class = "table table-striped table-bordered table-hover mt-3">
+    <thead class = "table-dark">
+    <div class = "d-flex">
+    </div>
+        <th>Name</th>
+        <th>Score</th>
+     </thead>
+    <tbody>
+
+        @foreach (var g in games)
+        {
+            <tr>
+                <td>@g.Name</td>
+                <td>@g.Score</td>
+            </tr>
+        }
+    </tbody>
+    </table>
+}
+@code {
+    List<GameModel>? games;
+    protected override async Task OnInitializedAsync()
+    {
+        string sql = "select * from games";
+        games = await _data.LoadData<GameModel, dynamic>(sql, new { }, _config.GetConnectionString("default"));
+    }
+
+}
